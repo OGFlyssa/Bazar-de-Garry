@@ -1,0 +1,30 @@
+@media (max-width: 431px)  {
+  /* navbar*/
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  
+  .navbar-logo {
+    height: 50px;
+  }
+  
+  .navbar-search input {
+    padding: 0.5rem;
+  }
+  
+  .navbar-search button,
+  .navbar-menu {
+    padding: 0.5rem;
+  }
+  /* fin del navbar */
+  
+}
