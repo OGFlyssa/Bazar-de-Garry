@@ -1,4 +1,5 @@
 import {HiSearch} from "react-icons/hi";
+import {HiMenu} from "react-icons/hi";
 import logo from "../assets/Garry.png";
 export default function Nav(){ 
     return(
@@ -11,7 +12,7 @@ export default function Nav(){
     <input type="text" placeholder="Buscar" />
     <button><HiSearch/></button>
     </div>
-    <button className="navbar-menu">Menú</button>
+    <button className="navbar-menu"><HiMenu></HiMenu></button>
     </div>
 </nav>
     )

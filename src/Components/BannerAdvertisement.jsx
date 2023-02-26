@@ -1,5 +1,6 @@
 import { useState ,useEffect} from 'react';
-
+import { HiChevronLeft } from "react-icons/hi";
+import { HiChevronRight } from "react-icons/hi";
 export default function BannerAdvertisement({ images, redirectLinks }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -13,13 +14,11 @@ export default function BannerAdvertisement({ images, redirectLinks }) {
   const handlePrevious = () => {
     const previousIndex = currentIndex <= 0 ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(previousIndex);
-    console.log("previous" + previousIndex);
   };
 
   const handleNext = () => {
     const nextIndex = currentIndex >= images.length - 1 ? 0 : currentIndex + 1;
     setCurrentIndex(nextIndex);
-    console.log("next" + nextIndex);
   };
 
   const renderImages = () => {
@@ -51,8 +50,8 @@ export default function BannerAdvertisement({ images, redirectLinks }) {
             <div key={index} style={index === currentIndex ? activeImageIndicator : imageIndicator} />
           ))}
         </div>
-        <button className='prevBtn' onClick={handlePrevious}>Previous</button>
-        <button className='nextBtn' onClick={handleNext}>Next</button>
+        <button className='prevBtn' onClick={handlePrevious}><HiChevronLeft></HiChevronLeft></button>
+        <button className='nextBtn' onClick={handleNext}> < HiChevronRight></HiChevronRight></button>
       </div>
     </div>
   );

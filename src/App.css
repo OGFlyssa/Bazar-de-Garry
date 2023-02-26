@@ -9,9 +9,7 @@
   }
   /* navbar*/
   .navbar {
-    position: absolute;
-    top: 0;
-    width: 100vh;
+    width: 100vw;
     background: white;
     z-index: 1;
   }
@@ -20,24 +18,41 @@
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    max-width: 90vw;
+    max-width: 100vw;
   }
   
   .navbar-logo {
-    height: 50px;
-    border: 3px solid red;
+    height: 30px;
   }
 .navbar-search{
-  display: inline-block;
-  margin-left: ;
+  display: flex;
+  justify-content: space-around;
+  margin: auto auto;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.navbar-search:focus-within{
+  border: 1px solid black;
+  border-radius: 5px 50px 50px 5px;
 }
   .navbar-search input {
     padding: 0.5rem;
+    border: none;
+    width: 70%;
   }
-  
+  .navbar-search input:focus{
+    outline: none;
+  }
   .navbar-search button,
   .navbar-menu {
     padding: 0.5rem;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
   }
   /* fin del navbar */
 
@@ -46,11 +61,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 20vh;
     max-width: 100%;
   }
   .banner{
-      height: 80%;
+      height: 100%;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -74,13 +89,19 @@
   }
   .prevBtn{
     position: absolute;
-    left:5%;
-    bottom:5%;
+    left: 0;
+    font-size: 2rem;
+    background-color: rgba(128, 128, 128, 0.5);
+    border: none;
+    height: 100%;
   }
 
   .nextBtn{
     position: absolute;
-    right:5%;
-    bottom:5%;
+    right: 0;
+    font-size: 2rem;
+    background-color: rgba(128, 128, 128, 0.5);
+    border: none;
+    height: 100%;
   }
 }
