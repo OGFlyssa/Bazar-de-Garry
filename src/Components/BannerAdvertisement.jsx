@@ -1,71 +1,61 @@
 import { useState ,useEffect} from 'react';
-const [xPos, setXPos] = useState(0);
 
 export default function BannerAdvertisement({ images, redirectLinks }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(()=>{
-    const interval = setInterval(handleNext,2500)
-    return () => clearInterval(interval);
-  })
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      handleNext();
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [currentIndex, images.length]);
 
   const handlePrevious = () => {
-    const previousIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    const previousIndex = currentIndex <= 0 ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(previousIndex);
+    console.log("previous" + previousIndex);
   };
 
   const handleNext = () => {
-    const nextIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    const nextIndex = currentIndex >= images.length - 1 ? 0 : currentIndex + 1;
     setCurrentIndex(nextIndex);
+    console.log("next" + nextIndex);
+  };
+
+  const renderImages = () => {
+    return images.map((image, index) => {
+      return (
+        <img
+          key={index}
+          src={image}
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            left: `${index * window.innerWidth}px`,
+            top: 0,
+            transition: "transform 0.5s ease-out",
+            transform: `translateX(${-window.innerWidth*currentIndex}px)`
+          }}
+        />
+      );
+    });
   };
 
   return (
-    <div style={bannerContainer}>
-      <div style={banner}>
-        <img src={images[currentIndex]} alt="banner" style={bannerImage} />
-        <div style={imageIndicatorContainer}>
+    <div className='bannerContainer'>
+      <div className='banner'>
+      {renderImages()}
+        <div className='imageIndicatorContainer'>
           {images.map((_, index) => (
             <div key={index} style={index === currentIndex ? activeImageIndicator : imageIndicator} />
           ))}
         </div>
-        <button style={previousButton} onClick={handlePrevious}>Previous</button>
-        <button style={nextButton} onClick={handleNext}>Next</button>
+        <button className='prevBtn' onClick={handlePrevious}>Previous</button>
+        <button className='nextBtn' onClick={handleNext}>Next</button>
       </div>
-      <a href={redirectLinks[currentIndex]} style={redirectLink}>Go to page</a>
     </div>
   );
-};
-
-const bannerContainer = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '30vh',
-  width: '100%',
-};
-
-const banner = {
-  height: '80%',
-  width: '80%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-};
-
-const bannerImage = {
-  height: '100%',
-  width: '100%',
-  objectFit: 'cover',
-};
-
-const imageIndicatorContainer = {
-  position: 'absolute',
-  bottom: '5%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
 };
 
 const imageIndicator = {
@@ -81,21 +71,5 @@ const activeImageIndicator = {
   backgroundColor: 'white',
 };
 
-const previousButton = {
-  position: 'absolute',
-  left: '5%',
-  bottom: '5%',
-};
-
-const nextButton = {
-  position: 'absolute',
-  right: '5%',
-  bottom: '5%',
-};
-
-const redirectLink = {
-  position: 'absolute',
-  bottom: '5%',
-};
 
 
